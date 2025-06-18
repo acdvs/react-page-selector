@@ -59,7 +59,7 @@ function usePages() {
   const addPage = (idx: number) => {
     // Get type and label from dialog in a full app.
     const newPage = {
-      id: pages.length.toString(),
+      id: (pages.length + 1).toString(),
       type: 'form' as PageType,
       label: 'New page',
       active: false,
