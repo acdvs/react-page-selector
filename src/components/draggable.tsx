@@ -6,7 +6,6 @@ import { tw } from '@/utils';
 function Draggable({
   onDragStart,
   onDragEnd,
-  children,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [dragging, setDragging] = useState(false);
@@ -29,9 +28,7 @@ function Draggable({
       onDragOver={(e) => e.preventDefault()}
       className={tw(dragging && 'opacity-35')}
       {...props}
-    >
-      {children}
-    </div>
+    />
   );
 }
 
