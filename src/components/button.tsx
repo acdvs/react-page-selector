@@ -22,6 +22,7 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from './context-menu';
+import Draggable from './draggable';
 
 const icons: Record<PageType, LucideIcon> = {
   info: Info,
@@ -33,12 +34,12 @@ const icons: Record<PageType, LucideIcon> = {
 function Button({
   type,
   label,
-  active,
+  active = true,
   ...props
 }: {
   type: PageType;
   label: string;
-  active: boolean;
+  active?: boolean;
 } & React.HTMLAttributes<HTMLButtonElement>) {
   const isToggle = type !== 'new';
   const Icon = icons[type];
@@ -65,11 +66,20 @@ function Button({
   );
 }
 
-function PageButton(props: React.ComponentProps<typeof Button>) {
+function PageButton({
+  onDragStart,
+  onDrop,
+  ...props
+}: {
+  onDragStart: React.DragEventHandler;
+  onDrop: React.DragEventHandler;
+} & Omit<React.ComponentProps<typeof Button>, 'onDragStart' | 'onDrop'>) {
   return (
     <ContextMenu>
       <ContextMenuTrigger>
-        <Button {...props} />
+        <Draggable onDragStart={onDragStart} onDrop={onDrop}>
+          <Button {...props} />
+        </Draggable>
       </ContextMenuTrigger>
       <ContextMenuContent className="absolute w-40">
         <ContextMenuLabel className="font-semibold text-md">Settings</ContextMenuLabel>

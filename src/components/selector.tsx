@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import usePages from '@/hooks/use-pages';
 import { Button, PageButton } from './button';
 import { PageSeparator, Separator } from './separator';
-import Draggable from './draggable';
 
 export function Selector() {
   const { pages, addPage, reorderPage } = usePages();
@@ -37,18 +36,18 @@ export function Selector() {
       {pages.map((val, idx) => (
         <React.Fragment key={val.id}>
           {idx > 0 && <PageSeparator addPage={() => handleInsertPage(idx)} />}
-          <Draggable onDragStart={() => setDragIdx(idx)} onDrop={handleReorder}>
-            <PageButton
-              {...val}
-              active={idx === activePage}
-              onClick={() => setActivePage(idx)}
-              data-page-idx={idx}
-            />
-          </Draggable>
+          <PageButton
+            {...val}
+            active={idx === activePage}
+            onClick={() => setActivePage(idx)}
+            onDragStart={() => setDragIdx(idx)}
+            onDrop={handleReorder}
+            data-page-idx={idx}
+          />
         </React.Fragment>
       ))}
       <Separator />
-      <Button type="new" label="Add new" active onClick={() => addPage(pages.length)} />
+      <Button type="new" label="Add new" onClick={() => addPage(pages.length)} />
     </div>
   );
 }
