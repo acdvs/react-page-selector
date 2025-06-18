@@ -1,14 +1,14 @@
-import { tw } from '@/utils';
+'use client';
+
 import { useState } from 'react';
+import { tw } from '@/utils';
 
 function Draggable({
   onDragStart,
   onDragEnd,
   children,
   ...props
-}: {
-  children: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   const [dragging, setDragging] = useState(false);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
