@@ -1,4 +1,3 @@
-import { cva } from 'class-variance-authority';
 import {
   CircleCheck,
   Clipboard,
@@ -31,19 +30,6 @@ const icons: Record<PageType, LucideIcon> = {
   new: Plus,
 };
 
-const variants = cva(
-  'relative px-3 py-2 flex shrink-0 items-center gap-2 rounded-xl border-1 cursor-pointer',
-  {
-    variants: {
-      active: {
-        false:
-          'text-foreground-muted bg-background-muted border-transparent hover:bg-[#d9dce1]',
-        true: 'text-black bg-white border-foreground-border focus:border-blue-500 focus:outline-2 focus:outline-blue-200',
-      },
-    },
-  },
-);
-
 function Button({
   type,
   label,
@@ -58,7 +44,15 @@ function Button({
   const Icon = icons[type];
 
   return (
-    <button className={variants({ active })} {...props}>
+    <button
+      className={tw(
+        active
+          ? 'text-black bg-white border-foreground-border focus:border-blue-500 focus:outline-2 focus:outline-blue-200'
+          : 'text-foreground-muted bg-background-muted border-transparent hover:bg-[#d9dce1]',
+        'relative px-3 py-2 flex shrink-0 items-center gap-2 rounded-xl border-1 cursor-pointer',
+      )}
+      {...props}
+    >
       <Icon
         className={tw(
           active && isToggle ? 'stroke-orange' : 'stroke-[#8c93a1]',
