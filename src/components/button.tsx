@@ -48,7 +48,6 @@ function Button({
   type,
   label,
   active,
-  onClick,
   ...props
 }: {
   type: PageType;
@@ -59,7 +58,7 @@ function Button({
   const Icon = icons[type];
 
   return (
-    <button className={variants({ active })} onClick={onClick} {...props}>
+    <button className={variants({ active })} {...props}>
       <Icon
         className={tw(
           active && isToggle ? 'stroke-orange' : 'stroke-[#8c93a1]',
