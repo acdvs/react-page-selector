@@ -18,6 +18,7 @@ export function Selector() {
 
     if (dragIdx !== undefined && newIdx !== undefined) {
       reorderPage(dragIdx, newIdx);
+      setActivePage(newIdx);
     }
 
     setDragIdx(undefined);
