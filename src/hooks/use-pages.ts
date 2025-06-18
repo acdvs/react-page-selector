@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 // Only including page types relevant to the Figma file.
 export type PageType = 'info' | 'form' | 'ending' | 'new';
@@ -8,28 +7,33 @@ type Page = {
   id: string;
   type: PageType;
   label: string;
+  active: boolean;
 };
 
 const data: Page[] = [
   {
-    id: uuidv4(),
+    id: '1',
     type: 'info',
     label: 'Info',
+    active: false,
   },
   {
-    id: uuidv4(),
+    id: '2',
     type: 'form',
     label: 'Details',
+    active: false,
   },
   {
-    id: uuidv4(),
+    id: '3',
     type: 'form',
     label: 'Other',
+    active: false,
   },
   {
-    id: uuidv4(),
+    id: '4',
     type: 'ending',
     label: 'Ending',
+    active: false,
   },
 ];
 
@@ -38,12 +42,27 @@ function usePages() {
 
   const [pages, setPages] = useState(data);
 
+  const setActivePage = (idx: number) => {
+    setPages((curr) => {
+      const copy = [...curr];
+      const oldIdx = copy.findIndex((x) => x.active);
+
+      if (oldIdx >= 0) {
+        copy[oldIdx].active = false;
+      }
+      copy[idx].active = true;
+
+      return copy;
+    });
+  };
+
   const addPage = (idx: number) => {
     // Get type and label from dialog in a full app.
     const newPage = {
-      id: uuidv4(),
+      id: pages.length.toString(),
       type: 'form' as PageType,
       label: 'New page',
+      active: false,
     };
 
     setPages((curr) => curr.toSpliced(idx, 0, newPage));
@@ -60,7 +79,7 @@ function usePages() {
     });
   };
 
-  return { pages, addPage, reorderPage } as const;
+  return { pages, addPage, reorderPage, setActivePage } as const;
 }
 
 export default usePages;

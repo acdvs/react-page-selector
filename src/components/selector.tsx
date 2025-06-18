@@ -7,8 +7,7 @@ import { Button, PageButton } from './button';
 import { PageSeparator, Separator } from './separator';
 
 export function Selector() {
-  const { pages, addPage, reorderPage } = usePages();
-  const [activePage, setActivePage] = useState<number | undefined>();
+  const { pages, setActivePage, addPage, reorderPage } = usePages();
   const [dragIdx, setDragIdx] = useState<number | undefined>();
 
   const handleReorder = (e: React.DragEvent<HTMLDivElement>) => {
@@ -17,28 +16,18 @@ export function Selector() {
 
     if (dragIdx !== undefined && newIdx !== undefined) {
       reorderPage(dragIdx, newIdx);
-      setActivePage(newIdx);
     }
 
     setDragIdx(undefined);
-  };
-
-  const handleInsertPage = (idx: number) => {
-    addPage(idx);
-
-    if (activePage !== undefined && activePage >= idx) {
-      setActivePage((curr) => curr && curr + 1);
-    }
   };
 
   return (
     <div className="flex">
       {pages.map((val, idx) => (
         <React.Fragment key={val.id}>
-          {idx > 0 && <PageSeparator addPage={() => handleInsertPage(idx)} />}
+          {idx > 0 && <PageSeparator addPage={() => addPage(idx)} />}
           <PageButton
             {...val}
-            active={idx === activePage}
             onClick={() => setActivePage(idx)}
             onDragStart={() => setDragIdx(idx)}
             onDrop={handleReorder}
