@@ -37,7 +37,7 @@ function ContextMenuContent({
       <ContextMenuPrimitive.Content
         data-slot="context-menu-content"
         className={tw(
-          'bg-background text-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 overflow-x-hidden overflow-y-auto rounded-md border border-foreground-border p-1 shadow-md',
+          'bg-background text-foreground pb-2 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 overflow-x-hidden overflow-y-auto rounded-xl border-[0.5px] border-background-border basic-shadow',
           className,
         )}
         {...props}
@@ -61,7 +61,7 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={tw(
-        "focus:bg-background-muted cursor-pointer focus:text-foreground data-[variant=destructive]:text-action-destructive data-[variant=destructive]:focus:bg-action-destructive/10 dark:data-[variant=destructive]:focus:bg-action-destructive/10 data-[variant=destructive]:focus:text-action-destructive data-[variant=destructive]:*:[svg]:!text-action-destructive [&_svg:not([class*='text-'])]:text-foreground-muted relative flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-background-muted/10 cursor-pointer focus:text-foreground data-[variant=destructive]:text-action-destructive data-[variant=destructive]:focus:bg-action-destructive/10 dark:data-[variant=destructive]:focus:bg-action-destructive/10 data-[variant=destructive]:focus:text-action-destructive data-[variant=destructive]:*:[svg]:!text-action-destructive [&_svg:not([class*='text-'])]:text-foreground-muted relative flex items-center gap-2 rounded-sm mx-1 px-2 py-[7px] text-sm leading-4 outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -69,7 +69,7 @@ function ContextMenuItem({
   );
 }
 
-function ContextMenuLabel({
+function ContextMenuTitle({
   className,
   inset,
   ...props
@@ -81,7 +81,7 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       data-inset={inset}
       className={tw(
-        'text-foreground px-2 py-1.5 text-sm font-medium data-[inset]:pl-8',
+        'text-foreground p-3 pb-2 text-md font-semibold data-[inset]:pl-8',
         className,
       )}
       {...props}
@@ -96,7 +96,7 @@ function ContextMenuSeparator({
   return (
     <ContextMenuPrimitive.Separator
       data-slot="context-menu-separator"
-      className={tw('bg-foreground-border -mx-1 my-1 h-px', className)}
+      className={tw('bg-background-border my-1 h-[0.5px]', className)}
       {...props}
     />
   );
@@ -107,8 +107,8 @@ export {
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuLabel,
   ContextMenuSeparator,
+  ContextMenuTitle,
   ContextMenuGroup,
   ContextMenuPortal,
 };

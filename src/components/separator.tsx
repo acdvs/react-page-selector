@@ -11,8 +11,8 @@ function Separator({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={tw('w-6 flex items-center', className)}>
-      <div className="w-full border-1 border-[#c0c0c0] border-dashed" />
+    <div className={tw('w-5 flex items-center', className)}>
+      <div className="w-full border-1 border-foreground-border border-dashed" />
       {children}
     </div>
   );
@@ -20,14 +20,12 @@ function Separator({
 
 function PageSeparator({ addPage }: { addPage: () => void }) {
   return (
-    <Separator className="hover:w-16 relative transition-[width] group">
+    <Separator className="hover:w-14 relative transition-[width] group">
       <button
-        className="absolute left-1/2 -translate-x-1/2 cursor-pointer hidden group-hover:block"
+        className="absolute left-1/2 -translate-x-1/2 cursor-pointer bg-background rounded-full size-4 justify-center items-center border-[0.5px] border-background-border basic-shadow hidden group-hover:flex"
         onClick={addPage}
       >
-        <div className="bg-background rounded-full size-5 flex items-center justify-center border-1 border-foreground-border">
-          <Plus className="w-[12px]" />
-        </div>
+        <Plus className="size-2" />
       </button>
     </Separator>
   );

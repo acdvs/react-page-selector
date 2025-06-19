@@ -2,11 +2,13 @@
 
 :root {
   --background: #ffffff;
-  --background-muted: #eceef1;
+  --background-muted: #9da4b2;
+  --background-border: #e1e1e1;
 
   --foreground: #1a1a1a;
   --foreground-muted: #677289;
-  --foreground-border: #e1e1e1;
+  --foreground-border: #c0c0c0;
+  --foreground-icon: #8C93A1;
 
   --action-primary: #2f72e2;
   --action-destructive: #ef494f;
@@ -17,10 +19,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-background-muted: var(--background-muted);
+  --color-background-border: var(--background-border);
 
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-foreground-border: var(--foreground-border);
+  --color-foreground-icon: var(--foreground-icon);
 
   --color-action-primary: var(--action-primary);
   --color-action-destructive: var(--action-destructive);
@@ -31,5 +35,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+@utility basic-shadow {
+  box-shadow: 0 1px 1px 0 rgb(0 0 0 / 0.02), 0 1px 3px 0 rgb(0 0 0 / 0.04);
 }

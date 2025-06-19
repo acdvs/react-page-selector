@@ -18,8 +18,8 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuLabel,
   ContextMenuSeparator,
+  ContextMenuTitle,
   ContextMenuTrigger,
 } from './context-menu';
 import Draggable from './draggable';
@@ -48,20 +48,22 @@ function Button({
     <button
       className={tw(
         active
-          ? 'text-black bg-white border-foreground-border focus:border-blue-500 focus:outline-2 focus:outline-blue-200'
-          : 'text-foreground-muted bg-background-muted border-transparent hover:bg-[#d9dce1]',
-        'relative px-3 py-2 flex shrink-0 items-center gap-2 rounded-xl border-1 cursor-pointer',
+          ? 'text-foreground bg-background border-[0.5px] border-background-border focus:border-action-primary focus:outline-action-primary/25 focus:outline-[1.5px] basic-shadow'
+          : 'text-foreground-muted bg-background-muted/15 hover:bg-background-muted/35',
+        'relative px-[10px] py-1 flex shrink-0 items-center gap-[6px] rounded-lg text-sm cursor-pointer',
       )}
       {...props}
     >
       <Icon
         className={tw(
-          active && isToggle ? 'stroke-orange' : 'stroke-[#8c93a1]',
-          'w-[20px]',
+          active && isToggle ? 'stroke-orange' : 'stroke-foreground-icon',
+          'size-[20px] p-[1px]',
         )}
       />
       {label}
-      {active && isToggle && <EllipsisVertical className="stroke-[#9da4b2]" />}
+      {active && isToggle && (
+        <EllipsisVertical className="size-4 stroke-background-muted" />
+      )}
     </button>
   );
 }
@@ -81,8 +83,8 @@ function PageButton({
           <Button {...props} />
         </Draggable>
       </ContextMenuTrigger>
-      <ContextMenuContent className="absolute w-40">
-        <ContextMenuLabel className="font-semibold text-md">Settings</ContextMenuLabel>
+      <ContextMenuContent className="w-60">
+        <ContextMenuTitle>Settings</ContextMenuTitle>
         <ContextMenuSeparator />
         <ContextMenuItem>
           <Flag className="fill-action-primary stroke-action-primary" />
@@ -100,7 +102,7 @@ function PageButton({
           <Copy />
           Duplicate
         </ContextMenuItem>
-        <ContextMenuSeparator />
+        <ContextMenuSeparator className="mx-3" />
         <ContextMenuItem variant="destructive">
           <Trash2 />
           Delete

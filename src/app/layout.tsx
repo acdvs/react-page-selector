@@ -1,4 +1,9 @@
+import { Inter } from 'next/font/google';
+import { tw } from '@/utils';
+
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export default function RootLayout({
   children,
@@ -7,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={tw(inter.className, '-tracking-[0.015em]')}>{children}</body>
     </html>
   );
 }
