@@ -36,7 +36,7 @@ export function Selector() {
         </React.Fragment>
       ))}
       <Separator />
-      <Button type="new" label="Add new" onClick={() => addPage(pages.length)} />
+      <Button type="new" label="Add page" onClick={() => addPage(pages.length)} />
     </div>
   );
 }
